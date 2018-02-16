@@ -1,8 +1,8 @@
 % Solves the pendulum equation
 %% Declare initial conditions
 T_start = 0;
-T_end = 20;
-theta_dot0 = -1.5;
+T_end = 600;
+theta_dot0 = -0.5;
 theta0 = pi/33;
 
 %% Solve the eqaution
@@ -13,4 +13,16 @@ theta = wrapToPi(v(:,1));
 theta_dot = v(:,2);
 
 %% Plot results
+figure
 plot(t, theta);
+
+rads = zeros(length(t),1);
+drad_dtheta = zeros(length(t),1);
+drad_dtheta_dot = zeros(length(t),1);
+for i = 1:length(theta)
+[rads(i,1),drad_dtheta(i,1), drad_dtheta_dot(i,1)] = radius(theta(i),theta_dot(i));
+end
+
+hold on
+plot(t,(rads-10))
+hold off

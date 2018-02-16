@@ -2,11 +2,11 @@ function [r, dr_dtheta, dr_dtheta_dot] = radius(theta, theta_dot)
 %RADIUS How the effective radius of the pendulum varies in time
 
 theta_dot_lim = 0.1;
-theta_lim = pi/6;
+theta_lim = pi/50;
 h = 0.1; % half the possible change in radius
-r_av = 0.9; % average radius
-m = 20; % sets rise rate stnading up
-n = 20; % sets down rate sitting down
+r_av = 10; % average radius
+m = 1; % sets rise rate stnading up
+n = 1; % sets down rate sitting down
 
 if (theta_dot > 0) && (abs(theta) < theta_lim)
     r = r_av + h*tanh(m*theta);
@@ -33,5 +33,4 @@ else
     dr_dtheta = 0;
     dr_dtheta_dot = 0;
 end
-
 
