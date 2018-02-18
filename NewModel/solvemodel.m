@@ -1,4 +1,8 @@
 % Solves the pendulum equation
+
+% Close open figures
+close all
+
 %% Declare initial conditions
 T_start = 0;
 T_end = 600;
@@ -25,4 +29,13 @@ end
 
 hold on
 plot(t,(rads-10))
+xlabel('time (s)')
+ylabel('$\theta$','interpreter','latex')
 hold off
+
+% sanity check
+figure
+plot(theta, theta_dot)
+xlabel('$\theta$','interpreter','latex')
+ylabel('$\dot{\theta}$','interpreter','latex')
+% plots a circle.
