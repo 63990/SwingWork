@@ -5,12 +5,14 @@ close all
 
 %% Declare initial conditions
 T_start = 0;
-T_end = 600;
-theta_dot0 = -0.5;
+T_end = 200 ;
+t = T_start:0.01:T_end;
+theta_dot0 = -0.15;
 theta0 = pi/33;
 
 %% Solve the eqaution
-[t, v] = ode45(@pendulum, [T_start T_end], [theta0, theta_dot0]);
+options = odeset('RelTol', 1e-4,'AbsTol',1e-7);
+[~, v] = ode45(@pendulum, t, [theta0, theta_dot0],options);
 
 %% Extract values
 theta = wrapToPi(v(:,1));
@@ -29,13 +31,23 @@ end
 
 hold on
 plot(t,(rads-10))
+
+yticks([-pi/2 -3*pi/8 -pi/4 -pi/8 0 pi/8 pi/4 3*pi/8 pi/2])
+set(gca, 'TickLabelInterpreter', 'latex',...
+    'yticklabels', {'$-\frac{\pi}{2}$','$-\frac{3\pi}{8}$','$-\frac{\pi}{4}$','$-\frac{\pi}{8}$','$0$','$\frac{\pi}{8}$','$\frac{\pi}{4}$','$\frac{3\pi}{8}$','$\frac{\pi}{2}$'},...
+    'fontsize', 18)
 xlabel('time (s)')
-ylabel('$\theta$','interpreter','latex')
+ylabel('$\theta$ (rad.)','interpreter','latex')
 hold off
 
-% sanity check
+% Sanity checks
 figure
 plot(theta, theta_dot)
 xlabel('$\theta$','interpreter','latex')
 ylabel('$\dot{\theta}$','interpreter','latex')
-% plots a circle.
+
+figure
+plot(t,theta)
+hold on
+plot(t,theta_dot)
+legend({'$\theta$','$\dot{\theta}$'},'interpreter','latex')
