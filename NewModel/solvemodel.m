@@ -5,10 +5,11 @@ close all
 
 %% Declare initial conditions
 T_start = 0;
-T_end = 200 ;
-t = T_start:0.01:T_end;
+T_end = 200;
+step_size = 0.01;
+t = T_start:step_size:T_end;
 theta_dot0 = -0.15;
-theta0 = pi/33;
+theta0 = pi/32;
 
 %% Solve the eqaution
 options = odeset('RelTol', 1e-4,'AbsTol',1e-7);
@@ -50,4 +51,5 @@ figure
 plot(t,theta)
 hold on
 plot(t,theta_dot)
-legend({'$\theta$','$\dot{\theta}$'},'interpreter','latex')
+plot(t,(rads-10))
+legend({'$\theta$','$\dot{\theta}$','r'},'interpreter','latex')
