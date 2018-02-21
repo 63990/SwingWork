@@ -8,7 +8,8 @@ multiplier = 1.1; % increase size of tanh function
 r_av = 10; % average radius
 m = 15; % sets rise rate stnading up
 n = 25; % sets down rate sitting down
-
+%global m n; % sitting and standing rate can be set as a global variables
+%using >> global m n; >> n = ...; >> m = ...;
 
 if (theta_dot > 0) && (abs(theta) < theta_lim)
     % As theta approaches 0 from the negative theta direction (theta_dot >
