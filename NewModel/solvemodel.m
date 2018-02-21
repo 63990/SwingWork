@@ -33,6 +33,8 @@ end
 hold on
 plot(t,(rads-10))
 
+% if pi values keep changing, it is worth moving to gnuplot as it handles
+% pi better
 yticks([-pi/2 -3*pi/8 -pi/4 -pi/8 0 pi/8 pi/4 3*pi/8 pi/2])
 set(gca, 'TickLabelInterpreter', 'latex',...
     'yticklabels', {'$-\frac{\pi}{2}$','$-\frac{3\pi}{8}$','$-\frac{\pi}{4}$','$-\frac{\pi}{8}$','$0$','$\frac{\pi}{8}$','$\frac{\pi}{4}$','$\frac{3\pi}{8}$','$\frac{\pi}{2}$'},...
