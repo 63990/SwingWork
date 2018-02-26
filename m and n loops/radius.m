@@ -3,9 +3,9 @@ function [r, dr_dtheta, dr_dtheta_dot] = radius(theta, theta_dot)
 
 theta_dot_lim = 0.06;
 theta_lim = 0.1;
-h = 0.05; % half the possible change in radius
+h = 0.25; % half the possible change in radius
 multiplier = 1.1; % increase size of tanh function
-r_av = 10; % average radius
+r_av = 7; % average radius
 %m = 15; % sets rise rate stnading up
 %n = 25; % sets down rate sitting down
 %global m n; % sitting and standing rate can be set as a global variables
