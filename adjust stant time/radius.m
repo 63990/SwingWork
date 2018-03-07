@@ -3,28 +3,28 @@ function [r, dr_dtheta, dr_dtheta_dot] = radius(theta, theta_dot)
 
 global shift %get global values from workspace
 %shift adjust when stands up
-shift=0.0;
+sft = shift;
 theta_dot_lim = 0.06;
 theta_lim = 0.1;
 h = 0.25; % half the possible change in radius
 multiplier = 1.1; % increase size of tanh function
 r_av = 7; % average radius
-m = 5; %put into m
+m = 15; %put into m
 n = 25; %put into n
 
-if (theta_dot > 0) && ((theta>(theta_lim-shift)) && (theta-shift<(theta_lim+shift)))
+if (theta_dot > 0) && ((theta>(-theta_lim+sft)) && (theta<(theta_lim+sft)))
     % As theta approaches 0 from the negative theta direction (theta_dot >
     % 0), the swinger gets to theta = theta_lim. At this point the swinger
     % begins to stand.
-    r = r_av - multiplier*h*tanh(m*theta-shift);
-    dr_dtheta = -(multiplier*h*m)/(cosh(m*theta-shift)^2);
+    r = r_av - multiplier*h*tanh(m*(theta-sft));
+    dr_dtheta = -(multiplier*h*m)/(cosh(m*(theta-sft))^2);
     dr_dtheta_dot = 0;
-elseif (theta_dot < 0) && ((theta>(theta_lim-shift)) && (theta-shift<(theta_lim+shift)))
+elseif (theta_dot < 0) && ((theta>(-theta_lim-sft)) && (theta<(theta_lim-sft)))
     % As theta approaches 0 from the positive theta direction (theta_dot <
     % 0), the swinger gets to theta = theta_lim. At this point the swinger
     % begins to stand.
-    r = r_av - multiplier*h*tanh(-m*theta-shift);
-    dr_dtheta = (multiplier*h*m)/(cosh(-m*theta-shift)^2);
+    r = r_av - multiplier*h*tanh(-m*(theta+sft));
+    dr_dtheta = (multiplier*h*m)/(cosh(-m*(theta-sft))^2);
     dr_dtheta_dot = 0;
 elseif (theta > 0) && (abs(theta_dot) < theta_dot_lim)
     % As theta increases positively, the swinger goes up to maximum of the swing.

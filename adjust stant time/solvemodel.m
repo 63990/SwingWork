@@ -27,12 +27,6 @@ for k = 1:length(theta)
     [rads(k,1),drad_dtheta(k,1), drad_dtheta_dot(k,1)] = radius(theta(k),theta_dot(k));
 end
 
-figure
-plot(t, theta);
-
-hold on
-plot(t,(rads-7))
-
 % % Plot results
 % 
 % add labels to envelope graph
