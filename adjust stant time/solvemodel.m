@@ -5,8 +5,8 @@
 
 %% Declare initial conditions
 T_start = 0;
-T_end = 100;
-step_size = 0.01;
+T_end = 200;
+step_size = 0.001;
 t = T_start:step_size:T_end;
 theta_dot0 = 0;
 theta0 = pi/12;
